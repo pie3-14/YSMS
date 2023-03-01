@@ -7,6 +7,15 @@
 #include "define.h"
 #include "game.h"
 
+/* 입력된 명령어 분해해서 저장할 구조체 */
+typedef struct {
+    char* name;/* 명령어 */
+    char* flag;
+    char* wem; /* 추가로 뭔갈 적어야 할 때 */
+    /* 명령어를 입력한다면 <name> <flag> <wem> */
+} CMD;
+
+
 /* 인원 수 많큼 점수를 저장할 배열 만들기 */
 int game(int player, char* yorn) {
     int size = player; /* 배열 사이즈 */
@@ -36,18 +45,18 @@ int game(int player, char* yorn) {
 
     /* 할당 */
     /* 웨이브 */
-    ones = (int*)malloc(sizeof(int) * size);
-    twos = (int*)malloc(sizeof(int) * size);
-    threes = (int*)malloc(sizeof(int) * size);
-    fours = (int*)malloc(sizeof(int) * size);
-    fives = (int*)malloc(sizeof(int) * size);
-    sixes = (int*)malloc(sizeof(int) * size);
-    fok = (int*)malloc(sizeof(int) * size);
-    fh = (int*)malloc(sizeof(int) * size);
-    ls = (int*)malloc(sizeof(int) * size);
-    bs = (int*)malloc(sizeof(int) * size);
-    yacht = (int*)malloc(sizeof(int) * size);
-    choice = (int*)malloc(sizeof(int) * size);
+    ones = (int*)calloc(size, sizeof(int));
+    twos = (int*)calloc(size, sizeof(int));
+    threes = (int*)calloc(size, sizeof(int));
+    fours = (int*)calloc(size, sizeof(int));
+    fives = (int*)calloc(size, sizeof(int));
+    sixes = (int*)calloc(size, sizeof(int));
+    fok = (int*)calloc(size, sizeof(int));
+    fh = (int*)calloc(size, sizeof(int));
+    ls = (int*)calloc(size, sizeof(int));
+    bs = (int*)calloc(size, sizeof(int));
+    yacht = (int*)calloc(size, sizeof(int));
+    choice = (int*)calloc(size, sizeof(int));
 
     printf("Yacht Score Management System - 요트 점수 관리 시스템\n");
 
@@ -55,45 +64,54 @@ int game(int player, char* yorn) {
     while (1) {
         printf(">>");
         fgets(command, sizeof(command), stdin);
-        com_clr = strlwr(command);
+        com_clr = strlwr(command); /* 대문자가 있으면 전부 소문자로 바꿔서 저장 */
+        char* boonhae = strtok(command, " "); /* 분해한 결과물*/
+        CMD result;
+        while (boonhae != NULL) {
+            result.name = boonhae;
+            boonhae = strtok(NULL, " "); 
+            result.flag = boonhae;
+            boonhae = strtok(NULL, " ");
+            result.wem = boonhae;
+            boonhae = strtok(NULL, " ");
+        }
+        if (strncmp(command,HELP,4) == 0) {
+            help();
+        } else if (strncmp(command,EXIT,4) == 0) {
+            break;
+        } else if(strncmp(command,LIST,4) == 0) {
+            printf("구현 안됨 \n");
+        } else if (strncmp(command,RANK,4) == 0) {
+            printf("구현 안됨 \n");
+        } else if (strncmp(command,RULE,4) == 0) {
+            rule();
+        } else if (strncmp(command,SET,4) == 0) {
+            printf("구현 안됨 \n");
+        } else {
+            printf("해당 명령어는 존재하지 않습니다. \n");
+        }
+        #if DEBUG
         if (strncmp(command,HELP,4) == 0) {
             help();
         }else if (strncmp(command,RULE,4) == 0) {
             rule();
-        }
-        #if DISABLE
-        parse(command);
-        if (parse(command) == -1) {
-            break;
         }
         #endif
     }
 
     /* 할당된 것들 해제 */
     free(ones);
-    ones = 0;
     free(twos);
-    twos = 0;
     free(threes);
-    threes = 0;
     free(fours);
-    fours = 0;
     free(fives);
-    fives = 0;
     free(sixes);
-    sixes =0;
     free(fok);
-    fok = 0;
     free(fh);
-    fh = 0;
     free(ls);
-    ls = 0;
     free(bs);
-    bs = 0;
     free(yacht);
-    yacht = 0;
     free(choice);
-    choice = 0;
 
     return -1;
 }

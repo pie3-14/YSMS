@@ -6,7 +6,7 @@
 
 /* 디버그용
  * */
-#define DEBUG 1
+#define DEBUG 0
 
 /*
 * 컴파일 제외
