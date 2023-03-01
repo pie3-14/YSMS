@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <string.h>
 
 #include "check.h"
@@ -24,8 +25,19 @@ int check_arg(int input) {
 	return result;
 }
 
+/* 문자열에 숫자만 있는지 확인 숫자가 아닌게 포함되어 있다면 -1 반환, 전부 숫자라면 1 반환  */
+int check_num(char* a) {
+	for (int i = 0; i < strlen(a); i++) {
+		if (isdigit(a[i]) == 0) {
+			return -1;
+		}
+	}
+
+	return 1;
+}
+
 /* 대문자를 소문자로 */
-char* strlwr (char* s) {
+char* strlwr(char* s) {
 	unsigned int size = strlen(s);
     for (int i = 0; i < size; i++) {
 		if (s[i] >= 'A' && s[i] <= 'Z') {
