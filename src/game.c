@@ -9,11 +9,15 @@
 
 /* 인원 수 많큼 점수를 저장할 배열 만들기 */
 int game(int player, char* yorn) {
-    int size = player;
+    int size = player; /* 배열 사이즈 */
     char yn[2];
-    strncpy(yn, yorn, 1);
-    char command[100];
-    char* com_clr;
+    strncpy(yn, yorn, 1); /* 인수를 yn에다가 복사 */
+    #if DEBUG
+    printf("yn 값 : %s \n", yn);
+    #endif
+    char command[100]; /* 입력받을 변수 */
+    char* com_clr; /* 전부 소문자로 바꾼 뒤 저장할 변수 */
+
     /* 무슨 숫자든 일단 기록되면 끝이니 배열의 모든 원소는 NULL로 */
     /* 각 점수를 저장할 배열을 인원 수 만큼의 원소를 가진 사이즈로 생성 */
     /* 고정 점수들은 상황에 따라 다를 수도 있음 */
@@ -30,7 +34,7 @@ int game(int player, char* yorn) {
     int *yacht; /* 5개 전부 같을 때, 고정 50점 */
     int *choice; /* 주사위 눈 5개의 총합 점수 */
 
-    /* 배열을 할당 */
+    /* 할당 */
     /* 웨이브 */
     ones = (int*)malloc(sizeof(int) * size);
     twos = (int*)malloc(sizeof(int) * size);
@@ -54,6 +58,8 @@ int game(int player, char* yorn) {
         com_clr = strlwr(command);
         if (strncmp(command,HELP,4) == 0) {
             help();
+        }else if (strncmp(command,RULE,4) == 0) {
+            rule();
         }
         #if DISABLE
         parse(command);
