@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "check.h"
 
 /*
@@ -22,15 +24,14 @@ int check_arg(int input) {
 	return result;
 }
 
-/* 대문자를 전부 소문자로 */
-char *caplo(char *cap[]) {
-	int i;
-	static char *cpp;
-	strcpy(cpp,cap);
-	for (i = 0; cpp[i]; i++) {
-		if ('A' <= cpp[i] && cpp[i] <= 'Z') {
-			cpp[i] += 32;
+/* 대문자를 소문자로 */
+char* strlwr (char* s) {
+	unsigned int size = strlen(s);
+    for (int i = 0; i < size; i++) {
+		if (s[i] >= 'A' && s[i] <= 'Z') {
+		    s[i] += 32;	
 		}
 	}
-	return cpp;
+
+    return s;
 }
