@@ -2,14 +2,18 @@
 #include <stdlib.h> 
 #include <string.h>
 
+#include "check.h"
+#include "cmd.h"
 #include "define.h"
 #include "game.h"
 
+/* 인원 수 많큼 점수를 저장할 배열 만들기 */
 int game(int player, char* yorn) {
     int size = player;
     char yn[2];
     strncpy(yn, yorn, 1);
     char command[100];
+    char* com_clr;
     /* 무슨 숫자든 일단 기록되면 끝이니 배열의 모든 원소는 NULL로 */
     /* 각 점수를 저장할 배열을 인원 수 만큼의 원소를 가진 사이즈로 생성 */
     /* 고정 점수들은 상황에 따라 다를 수도 있음 */
@@ -47,6 +51,10 @@ int game(int player, char* yorn) {
     while (1) {
         printf(">>");
         fgets(command, sizeof(command), stdin);
+        com_clr = strlwr(command);
+        if (strncmp(command,HELP,4) == 0) {
+            help();
+        }
         #if DISABLE
         parse(command);
         if (parse(command) == -1) {

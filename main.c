@@ -19,11 +19,11 @@ int main(int argc, char *argv[]) {
         #endif
         if (check_num(argv[1]) == 1) { /* 인수가 숫자라면 */
             num = atoi(argv[1]);
-            if (num > 0 && num < 6) { /* 1 ~ 5 사이 */
+            if (num > 1 && num < 6) { /* 1 ~ 5 사이 */
                 game(num, "n");
                 goto HALT;
             } else {
-                printf("플레이어 수는 1 ~ 5명이여야 합니다. \n");
+                printf("플레이어 수는 2 ~ 5명이여야 합니다. \n");
                 goto HALT;
             }
         } else {
@@ -34,11 +34,11 @@ int main(int argc, char *argv[]) {
         if (strncmp(strlwr(argv[2]),"-bo",4) == 0) { /* -bo와 일치한다면 */
             if (check_num(argv[1]) == 1) { /* 인수가 숫자라면 */
                 num = atoi(argv[1]);
-                if (num > 0 && num < 6) { /* 1 ~ 5 사이 */
+                if (num > 1 && num < 6) { /* 1 ~ 5 사이 */
                     game(num, "y");
                     goto HALT;
                 } else {
-                    printf("플레이어 수는 1 ~ 5명이여야 합니다. \n");
+                    printf("플레이어 수는 2 ~ 5명이여야 합니다. \n");
                     goto HALT;
                 }
             }
