@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
     int numch; /* 매개 변수 개수 체크한 결과를 담을 변수 */
-    char gog[5]="HELL";
+    char gog[5]="HELL"; /* 소문자 변환 실험 */
     
     /* 매개 변수의 개수가 몇 개인지 먼저 체크 */
     numch = check_arg(argc);
@@ -15,12 +15,8 @@ int main(int argc, char *argv[]) {
         printf("%s \n",strlwr(gog));
         goto HALT;
     } else if (numch == 2) {/* 인자 값 개수가 세 개 일 때*/
-        char bigyo[4] = strlwr(argv[2]); /* 대문자가 있다면 전부 소문자로 */
-        if (strncmp(bigyo,"-bo",4) == 0) { /* -bo와 일치한다면 */
+        if (strncmp(strlwr(argv[2]),"-bo",4) == 0) { /* -bo와 일치한다면 */
             /* 2번째 인수가 숫자인지 확인하고 점수 기록 시작 */
-            #if DEBUG
-            printf("정상 작동\n");
-            #endif
             goto HALT;
         } else {
             /* 일치하지 않는다면 */
