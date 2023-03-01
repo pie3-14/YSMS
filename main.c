@@ -4,6 +4,7 @@
 
 #include "check.h"
 #include "define.h"
+#include "game.h"
 
 int main(int argc, char *argv[]) {
     int numch; /* 매개 변수 개수 체크한 결과를 담을 변수 */
@@ -18,7 +19,8 @@ int main(int argc, char *argv[]) {
         #endif
         if (check_num(argv[1]) == 1) { /* 인수가 숫자라면 */
             num = atoi(argv[1]);
-            if (num > 0 && num < 6) {
+            if (num > 0 && num < 6) { /* 1 ~ 5 사이 */
+                game(num, "n");
                 goto HALT;
             } else {
                 printf("플레이어 수는 1 ~ 5명이여야 합니다. \n");
@@ -32,7 +34,8 @@ int main(int argc, char *argv[]) {
         if (strncmp(strlwr(argv[2]),"-bo",4) == 0) { /* -bo와 일치한다면 */
             if (check_num(argv[1]) == 1) { /* 인수가 숫자라면 */
                 num = atoi(argv[1]);
-                if (num > 0 && num < 6) {
+                if (num > 0 && num < 6) { /* 1 ~ 5 사이 */
+                    game(num, "y");
                     goto HALT;
                 } else {
                     printf("플레이어 수는 1 ~ 5명이여야 합니다. \n");

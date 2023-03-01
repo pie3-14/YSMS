@@ -25,7 +25,9 @@ int check_arg(int input) {
 	return result;
 }
 
-/* 문자열에 숫자만 있는지 확인 숫자가 아닌게 포함되어 있다면 -1 반환, 전부 숫자라면 1 반환  */
+/* 문자열에 숫자만 있는지 확인 
+*숫자가 아닌게 포함되어 있다면 -1 반환, 전부 숫자라면 1 반환  
+*/
 int check_num(char* a) {
 	for (int i = 0; i < strlen(a); i++) {
 		if (isdigit(a[i]) == 0) {
