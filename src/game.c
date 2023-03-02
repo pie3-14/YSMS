@@ -43,20 +43,68 @@ int game(int player, char* yorn) {
     int *yacht; /* 5개 전부 같을 때, 고정 50점 */
     int *choice; /* 주사위 눈 5개의 총합 점수 */
 
-    /* 할당 */
+    /* 할당 - 메모리가 부족하면 메시지 출력하고 종료*/
     /* 웨이브 */
     ones = (int*)calloc(size, sizeof(int));
+    if (ones == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     twos = (int*)calloc(size, sizeof(int));
+    if (twos == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     threes = (int*)calloc(size, sizeof(int));
+    if (threes == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     fours = (int*)calloc(size, sizeof(int));
+    if (fours == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     fives = (int*)calloc(size, sizeof(int));
+    if (fives == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     sixes = (int*)calloc(size, sizeof(int));
+    if (sixes == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     fok = (int*)calloc(size, sizeof(int));
+    if (fok == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     fh = (int*)calloc(size, sizeof(int));
+    if (fh == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     ls = (int*)calloc(size, sizeof(int));
+    if (ls == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     bs = (int*)calloc(size, sizeof(int));
+    if (bs == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     yacht = (int*)calloc(size, sizeof(int));
+    if (yacht== NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
     choice = (int*)calloc(size, sizeof(int));
+    if (choice == NULL) {
+        printf("메모리가 부족합니다.");
+        exit(1);
+    }
 
     printf("Yacht Score Management System - 요트 점수 관리 시스템\n");
 
@@ -101,17 +149,29 @@ int game(int player, char* yorn) {
 
     /* 할당된 것들 해제 */
     free(ones);
+    ones = NULL;
     free(twos);
+    twos = NULL;
     free(threes);
+    threes = NULL;
     free(fours);
+    fours = NULL;
     free(fives);
+    fives = NULL;
     free(sixes);
+    sixes = NULL;
     free(fok);
+    fok = NULL;
     free(fh);
+    fh = NULL;
     free(ls);
+    ls = NULL;
     free(bs);
+    bs = NULL;
     free(yacht);
+    yacht = NULL;
     free(choice);
+    choice = NULL;
 
     return -1;
 }
